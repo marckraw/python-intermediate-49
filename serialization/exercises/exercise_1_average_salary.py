@@ -23,21 +23,22 @@ from serialization.consts import CSV_FILE
 
 def average_salary(filepath, index):
     salary_sum = 0
-    # workers_counter = 0
+    salary_amount = 0
 
-    with open(filepath) as f:
-        reader = csv.reader(f)
-
+    with open(filepath) as in_file:
+        reader = csv.reader(in_file)
         next(reader)
 
         for row in reader:
-            salary_sum += int(row[index])
-            # workers_counter += 1
+            print(row[1])
+            salary_sum += float(row[1])
+            salary_amount += 1
 
-        # return salary_sum / workers_counter
-        return salary_sum / (reader.line_num - 1)
+
+    return salary_sum / salary_amount
 
 
 if __name__ == '__main__':
     average = average_salary(CSV_FILE, 1)
+    print()
     print(average)

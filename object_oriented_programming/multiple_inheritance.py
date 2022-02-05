@@ -44,26 +44,11 @@ class PracujacyStudent(Pracownik, Student):
         return Pracownik.pokaz_finanse(self) + Student.pokaz_finanse(self)
 
 
-"""
-                Osoba
-            /          \
-        Pracownik    Student
-            \           /
-            PracujacyStudent
-        
-        Osoba
-          |
-       Student
-          |
-      Pracownik
-          |
-    PracujacyStudent
-"""
 if __name__ == '__main__':
     # os1 = Osoba("Henryk", 54)
     os2 = Pracownik("Jacek", 36, 20, 160)
     os3 = Student("Agata", 22, 1000)
-    os4 = PracujacyStudent("Monika", 24, 20, 70, 550)
+    os4 = PracujacyStudent("Monika", 24, 9.5, 70, 550)
     # print(os1)
     print(os2)
     print(os3)

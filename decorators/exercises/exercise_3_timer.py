@@ -4,7 +4,7 @@ TIMER
 Naszym zadaniem jest napisanie dekoratora zliczającego czas działania udekorowanej funkcji.
 Dekorator musi byc uniwersalny, aby mozna go bylo uzyc z dowolna funkcja, dlatego powinnismy
 pozwolic na dostarczenie do funkcji dowolnych parametrow (*args, **kwargs). Dekorator przed
-wykonaniem funkcji zapisuje aktualny czas oraz zaraz po (time.time()). Po czym WYSWIETLA czas jaki
+wykonaniem funkcji zapisuje aktualny czas oraz zaraz po (time.time()). Po czym wyswietla czas jaki
 uplynal w czasie wykonania funkcji w następującym formacie:
                     Function <function_name> execution took: <time>
 * <function_name> - do nazwy funkcji mozna sie dobrac w nastepujacy sposob: func.__name__
@@ -14,23 +14,16 @@ Pamietajmy takze ze udekorowana funkcja nadal musi miec mozliwosc zwracania wart
 """
 import time
 
-start = time.time()
-# func
-end = time.time()
-end - start
-
 
 def timer(func):
     def wrapper(*args, **kwargs):
         start = time.time()
-
-        result = func(*args, *kwargs)
-
+        func_result = func(*args, **kwargs)
         end = time.time()
-        timer = end - start
+        execution_time = end - start
 
-        print(f'Function {func.__name__} execution took: {timer}')
-        return result
+        print(f'Function {func.__name__} execution took: {execution_time}')
+        return func_result
 
     return wrapper
 
@@ -47,7 +40,4 @@ def fibonacci(n):
 
 if __name__ == '__main__':
     print(fibonacci(10))
-    print(fibonacci(1000000))
-
-# 0.0195ms
-# 10230ms
+    # print(fibonacci(1000000))

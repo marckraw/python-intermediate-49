@@ -41,7 +41,6 @@ def throw_key_error():
         'test2': 2,
     }
     print(sample_dict['test3'])
-    test3 = sample_dict.get('test3')
 
 
 # def throw_name_error():

@@ -31,54 +31,52 @@ Do budowy ścieżek posłużyć się funkcjami z modułu 'os', który należy za
 """
 import os
 
-print(__file__)
-current_file = __file__
-exercise_1_read_files = os.path.dirname(current_file)
-exercises = os.path.dirname(exercise_1_read_files)
-
 EXERCISES_PATH = os.path.dirname(os.path.dirname(__file__))
-ASSETS_PATH = os.path.join(EXERCISES_PATH, 'assets')
 
 PATHS = [
-    os.path.join(ASSETS_PATH, 'file1'),
-    os.path.join(ASSETS_PATH, 'file2'),
-    os.path.join(ASSETS_PATH, 'file22'),
-    os.path.join(ASSETS_PATH, 'file3'),
-    os.path.join(ASSETS_PATH, 'file4'),
+    os.path.join(EXERCISES_PATH, 'assets', 'file1'),
+    os.path.join(EXERCISES_PATH, 'assets', 'file2'),
+    os.path.join(EXERCISES_PATH, 'assets', 'file3'),
+    os.path.join(EXERCISES_PATH, 'assets', 'file4'),
+    os.path.join(EXERCISES_PATH, 'assets', 'file5'),
 ]
 
 
 def read_file(file_path):
-    # file = open(file_path)
-    # lines = file.readlines()
+    # file = open(file_path, 'r')
     # file.close()
-    # return lines
-    with open(file_path, encoding='utf-8') as f:
+
+    with open(file_path, 'r', encoding='utf-8') as f:
         return f.readlines()
+
 
 
 def read_files(file_paths):
     files_content = []
-
-    for file_path in file_paths:
+    for file in file_paths:
         try:
-            lines = read_file(file_path=file_path)
+            lines = read_file(file_path=file)
             files_content.append(lines)
         except FileNotFoundError:
             files_content.append([])
+
+
+        # try:
+        #     lines = read_file(file_path=file)
+        # except FileNotFoundError:
+        #     files_content.append([])
+        # else:
+        #     files_content.append(lines)
+
 
     return files_content
 
 
 if __name__ == '__main__':
-    path = os.path.join(EXERCISES_PATH, 'assets', 'file1')
-    print(read_file(file_path=path))
 
-    content = read_files(PATHS)
-    for file_content in content:
-        print(file_content)
+    content = read_file(file_path=PATHS[0])
+    print(content)
 
-    # [
-    #     ['Przepis na pizze; cos tam cos tam', 'Przepis na kluski'],
-    #     [],  # nieistniejacy plik
-    # ]
+    all_content = read_files(file_paths=PATHS)
+    print(all_content)
+

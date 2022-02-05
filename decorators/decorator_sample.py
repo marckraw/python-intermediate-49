@@ -7,9 +7,9 @@ def decorator(func):
     return wrapper
 
 
-# @decorator
-# def sample_func1():
-#     print('Hello World')
+@decorator
+def sample_func1():
+    print('Hello World')
 
 
 # ekwiwalent dekoratora
@@ -28,9 +28,9 @@ def parametrized_decorator(before_msg, after_msg):
     return decorator
 
 
-# @parametrized_decorator('Parametrized before', 'Parametrized after')
-# def sample_func2():
-#     print('Hello World')
+@parametrized_decorator('Parametrized before', 'Parametrized after')
+def sample_func2():
+    print('Hello World')
 
 
 @parametrized_decorator('Parametrized before', 'Parametrized after')
@@ -38,8 +38,6 @@ def parametrized_decorator(before_msg, after_msg):
 def sample_func3():
     print('Hello World')
 
-
-# parametrized_decorator | decorator | sample_func3 | decorator | parametrized_decorator
 
 def decorator_func_with_params(func):
     def wrapper(*args, **kwargs):
