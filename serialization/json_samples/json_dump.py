@@ -19,7 +19,5 @@ if __name__ == '__main__':
     # dump - serializacja i zapis do pliku
     # dumps - serializacja
 
-    json_data = json.dumps(kursanci)
-
     with open(JSON_FILE, 'w') as out_file:
         json.dump(kursanci, out_file, indent=2)

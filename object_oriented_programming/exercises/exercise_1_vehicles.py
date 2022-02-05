@@ -41,120 +41,76 @@ from abc import ABC, abstractmethod
 
 
 class Vehicle(ABC):
-    def __init__(self, *args, **kwargs):
-        pass
-
     @abstractmethod
     def get_current_speed(self) -> float:
         pass
 
 
-# class LandVehicle(Vehicle, ABC):
-#     def __init__(self, wheels_number: int):
-#         self._wheels_number = wheels_number
-#
-#     @abstractmethod
-#     def drive(self):
-#         pass
-
-
-# class WaterVehicle(Vehicle, ABC):
-#     def __init__(self, name: str, propulsion_type: str):
-#         self._name = name
-#         self._propulsion_type = propulsion_type
-#
-#     @abstractmethod
-#     def swim(self):
-#         pass
-#
-#     def __str__(self):
-#         return f'{self._name}: {self._propulsion_type}'
-
 class LandVehicle(Vehicle, ABC):
-    def __init__(self, wheels_number: int, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self._wheels_number = wheels_number
+    def __init__(self, wheels_number: int):
+        _wheels_number = wheels_number
 
     @abstractmethod
-    def drive(self):
+    def drive(self) -> str:
         pass
 
 
 class WaterVehicle(Vehicle, ABC):
-    def __init__(self, name: str, propulsion_type: str, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self._name = name
-        self._propulsion_type = propulsion_type
+    def __init__(self, name: str, propulsion_type: str):
+        _name = name
+        _propulsion_type = propulsion_type
 
     @abstractmethod
-    def swim(self):
+    def swim(self) -> str:
         pass
-
-    def __str__(self):
-        return f'{self._name}: {self._propulsion_type}'
 
 
 class Car(LandVehicle):
     def drive(self):
-        return 'I am driving!'
+        print(f"Jade z predkoscia {self.get_current_speed()}")
 
-    def get_current_speed(self) -> float:
-        return 80.5
+    def get_current_speed(self):
+        return 120
 
 
 class Ship(WaterVehicle):
+    def __init__(self, name, propulsion_type):
+        super().__init__(name, propulsion_type)
+
     def swim(self):
-        return 'I am swimming!'
+        print(f"Plyne z predkoscia {self.get_current_speed()}")
 
-    def get_current_speed(self) -> float:
-        return 8
+    def get_current_speed(self):
+        return 50
 
-
-# class AmphibiousVehicle(LandVehicle, WaterVehicle):
-#     def __init__(self, wheels_number: int, name: str, propulsion_type: str):
-#         LandVehicle.__init__(self, wheels_number)
-#         WaterVehicle.__init__(self, name, propulsion_type)
-#
-#     def drive(self):
-#         return 'I am driving!'
-#
-#     def swim(self):
-#         return 'I am swimming!'
-#
-#     def get_current_speed(self) -> float:
-#         return 15
 
 class AmphibiousVehicle(LandVehicle, WaterVehicle):
-    def __init__(self, wheels_number: int, name: str, propulsion_type: str):
-        super().__init__(wheels_number=wheels_number, name=name, propulsion_type=propulsion_type)
+    def __init__(self, wheels_number, name, propultion_type):
+        LandVehicle.__init__(self, wheels_number)
+        WaterVehicle.__init__(self, name, propultion_type)
 
-    def drive(self):
-        return 'I am driving!'
+    def drive(self) -> str:
+        print(f"Jade amfibia z predkoscia {self.get_current_speed()}")
 
-    def swim(self):
-        return 'I am swimming!'
+    def swim(self) -> str:
+        print(f"Plyne amfibia z predkoscia {self.get_current_speed()}")
 
-    def get_current_speed(self) -> float:
-        return 15
+    def get_current_speed(self):
+        return 300
 
-"""
-    Vehicle
-      |
-  WaterVehicle
-      |
-  LandVehicle
-      |
-  AmphibiousVehicle
-"""
 
 if __name__ == '__main__':
-    car = Car(wheels_number=5, a=3, b=5)
-    ship = Ship(name='Nugat', propulsion_type='śrubowy')
-    print(ship)
-    # car.get_current_speed()
-    # car.drive()
+    car = Car(wheels_number=4)
+    ship = Ship(name='Nugat', propulsion_type='asd')
+    print(car.get_current_speed())
+    car.drive()
+    print(ship.get_current_speed())
+    ship.swim()
 
-    amphibious_vehicle = AmphibiousVehicle(wheels_number=4, name='Nugat', propulsion_type='śrubowy')
-    amphibious_vehicle.get_current_speed()
-    amphibious_vehicle.drive()
-    amphibious_vehicle.swim()
+    print()
+    print()
+
+    amfibia = AmphibiousVehicle(wheels_number=4, name="Amfibia", propultion_type='some weird one')
+    print(amfibia.get_current_speed())
+    amfibia.drive()
+    amfibia.swim()

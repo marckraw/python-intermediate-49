@@ -20,29 +20,24 @@ class Prostokat(Figura):
         return self.a * self.b
 
 
-prostokat = Prostokat(a=10, b=12)
-prostokat.a
-prostokat.b
-prostokat.pole()
-prostokat.obwod()
-
 # to samo tylko bez @dataclass
-class Prostokat(Figura):
-    def __init__(self, a: int, b: int):
-        self.a = a
-        self.b = b
-
-    def __repr__(self) -> str:
-        return f"Prostokat(a={self.a}, b={self.b})"
-
-    def __eq__(self, other) -> bool:
-        return isinstance(other, Prostokat) and (self.a, self.b) == (other.a, other.b)
-
-    def obwod(self) -> float:
-        return 2 * (self.a + self.b)
-
-    def pole(self) -> float:
-        return self.a * self.b
+# class Prostokat(Figura):
+#     def __init__(self, a: int, b: int, color: str):
+#         super().__init__(color)
+#         self.a = a
+#         self.b = b
+#
+    # def __repr__(self) -> str:
+    #     return f"Prostokat(a={self.a}, b={self.b})"
+#
+#     def __eq__(self, other) -> bool:
+#         return isinstance(other, Prostokat) and (self.a, self.b) == (other.a, other.b)
+#
+#     def obwod(self) -> float:
+#         return 2 * (self.a + self.b)
+#
+#     def pole(self) -> float:
+#         return self.a * self.b
 
 @dataclass
 class Sample:
@@ -68,7 +63,7 @@ if __name__ == '__main__':
     sample = Sample(
         sample_int=2,
         sample_list_of_ints=[1, 2, 3],
-        sample_not_in_repl_int=1,
+        sample_not_in_repl_int=999,
     )
     print(sample)
     t=0

@@ -18,12 +18,10 @@ USER_DATA = {
 
 
 def strip_input_decorator(func):
-    def wrapper(user_input: str):
-        # strip_user_input = user_input.strip()
-        # replaced_user_input = strip_user_input.replace(' ', '_')
-        # return func(replaced_user_input)
-        processed_input = user_input.strip().replace(' ', '_')
-        return func(processed_input)
+    def wrapper(user_input):
+        user_input_result = user_input.strip().replace(' ', '_')
+
+        return func(user_input_result)
 
     return wrapper
 

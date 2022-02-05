@@ -50,10 +50,7 @@ USERS = [
 
 
 def check_permission(permission_list):
-    def decorator(func):
-        pass
-
-    return decorator
+    pass
 
 
 @check_permission([PermissionModel.OWNER, PermissionModel.ADMIN])

@@ -13,7 +13,10 @@ import os
 
 
 def copy(src_file: str, destination_file: str):
-    pass
+    with open(src_file, 'r') as f:
+        data = f.read()
+    with open(destination_file, 'w') as f:
+        f.write(data)
 
 
 if __name__ == '__main__':

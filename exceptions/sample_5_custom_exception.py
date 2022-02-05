@@ -5,10 +5,6 @@ class CustomException(Exception):
     #     self.msg = kwargs.get('msg')
 
 
-class MyFavoriteError(Exception):
-    pass
-
-
 def dummy_func():
     a = 3
     b = [1, 0, 2]

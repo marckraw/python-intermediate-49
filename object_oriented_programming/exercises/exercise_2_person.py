@@ -17,18 +17,21 @@ from datetime import date
 
 class Person:
     def __init__(self, name, age):
-        self.name = name
-        self.age = age
+        self._name = name
+        self._age = age
 
     @classmethod
     def create_from_birth_year(cls, name, birth_year) -> 'Person':
         age = date.today().year - birth_year
-        return cls(name=name, age=age)
+
+        return cls(name, age)
+
+    def __str__(self):
+        return f'{self._name}: {self._age}'
 
 
-def make_person_from_birth_year(name: str, birth_year: int) -> Person:
-    age = date.today().year - birth_year
-    return Person(name=name, age=age)
+def make_person_from_birth(name: str, birth_year: int) -> Person:
+    pass
 
 
 if __name__ == '__main__':
@@ -44,8 +47,10 @@ if __name__ == '__main__':
         birth_year=1997,
     )
 
-    person = make_person_from_birth_year(
-        name='Ala',
-        birth_year=1840,
-    )
-    t=0
+    print(nugat)
+    print(patryk)
+
+    # person = make_person_from_birth(
+    #     name='Ala',
+    #     birth_year=1840,
+    # )

@@ -61,6 +61,7 @@ def sum_figures_circuit(figures: List[Figura]):
     sum = 0
     for figure in figures:
         sum += figure.obwod()
+
     return sum
 
 
@@ -75,15 +76,5 @@ if __name__ == '__main__':
         kwadrat,
     ]
 
-    sum = sum_figures_circuit(figures=figure_list)
-    print(sum)
-
-    for figure in figure_list:
-        print(figure.obwod())
-        print(figure.pole())
-
-    # print(prostokat.obwod())
-    # print(kolo.obwod())
-    # print(kwadrat.obwod())
-    # print(kwadrat.pole())
-    kwadrat.show_color()
+    result = sum_figures_circuit(figure_list)
+    print(result)

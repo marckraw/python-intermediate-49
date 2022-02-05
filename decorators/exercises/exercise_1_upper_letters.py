@@ -21,9 +21,6 @@ dekorator modyfikuje wartość zwracaną przez udekorowaną funkcje i zwraca ją
 Chcemy doprowadzić do takiej sytuacji, gdzie wykorzystamy oba dekoratory na raz na jednej funkcji.
 """
 
-string = "ala"
-uppercase_string = string.upper()
-
 
 def to_uppercase(func):
     def wrapper(*args, **kwargs):
@@ -38,8 +35,6 @@ def include_length(func):
         result = func(*args, **kwargs)
         return (len(result), result)
 
-    return wrapper
-
 
 @include_length
 @to_uppercase
@@ -51,6 +46,5 @@ if __name__ == '__main__':
     # 'hello' -> 'h e l l o' -> 'H E L L O' -**> (9, 'H E L L O')
     #    |           |              |                   |
     # parametr   wynik func    wynik func po @     wynik po @*
-    print(scatter_string('hello'))
-    # assert scatter_string('hello') == 'H E L L O'
+    assert scatter_string('hello') == 'H E L L O'
     # assert scatter_string('hello') == (9, 'H E L L O')

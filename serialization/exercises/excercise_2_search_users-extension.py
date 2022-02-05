@@ -32,26 +32,8 @@ teraz będzie ona przyjmowac następujące parametry:
 """
 
 import json
-from dataclasses import dataclass
 
 from serialization.consts import USERS_DATA_FILE
-
-
-@dataclass
-class User:
-    id: int
-    name: str
-    sex: str
-    age: int
-
-
-def load_to_obj(user_dict):
-    return User(
-        id=user_dict.get('id'),
-        name=user_dict.get('name'),
-        age=user_dict.get('age'),
-        sex=user_dict.get('sex'),
-    )
 
 
 def load_data(filepath):
@@ -59,14 +41,19 @@ def load_data(filepath):
         return json.load(in_file)
 
 
-def search_data(data, attribute, value):
-    result_list = []
+def search_data(data, filters):
+    result_list = data
 
-    for user in data:
-        if user.get(attribute) == value:
-            result_list.append(user)
 
-    return result_list
+
+    for x in filters:
+        print(f'{x}: {filters[x]}')
+
+
+
+    # for user in data:
+    #     if user.get(attribute) == value:
+    #         result_list.append(user)
 
 
 if __name__ == '__main__':
@@ -74,10 +61,13 @@ if __name__ == '__main__':
     print(
         search_data(
             data=data,
-            attribute='sex',
-            value='M',
+            filters={
+                'sex': 'F',
+                'age': 32
+            }
         )
     )
+
 
 # def load_data(filepath):
 #     with open(filepath) as in_file:
