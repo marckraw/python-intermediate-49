@@ -19,20 +19,33 @@ atrybutu.
 import time
 
 
+class TooLongExecution(Exception):
+    pass
+
+
 class Timer:
 
     def __init__(self, limit=None):
-        pass
+        self._limit = limit
+        self._start_time = None
 
     def __enter__(self):
-        pass
+        self._start_time = time.time()
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        pass
+        executiion_time = time.time() - self._start_time
+        print(f'Execution time: {executiion_time}')
+
+        if self._limit and executiion_time > self._limit:
+            raise TooLongExecution(f'execution: {executiion_time}, limit: {self._limit}')
+
+        if exc_type:
+            print(f'Exception occured with type {exc_type} message: {exc_val}')
+
+        return True
 
 
 if __name__ == '__main__':
     with Timer(0.1):
-        for n in range(10000000):
+        for n in range(10000000):  # 10000000
             pass
-        # raise NotImplementedError('asdss')

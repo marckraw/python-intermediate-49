@@ -5,7 +5,7 @@ Napisz funkcje lambda przyjmujaca jako argument string. Funkcja ma sprawdzic czy
 numerem, czyli czy zawiera tylko cyfry. Do tego posluz sie metoda stringa <str>.isdigit().
 """
 if __name__ == '__main__':
-    # is_string_number =
+    is_string_number = lambda x: x.isDigit
 
     assert is_string_number('123')
     assert not is_string_number('Ala ma kota')
